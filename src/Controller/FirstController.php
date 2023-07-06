@@ -13,7 +13,20 @@ class FirstController extends AbstractController
     {
        // die('je suis la requete /first');
         return $this->render('first/index.html.twig', [
-            'controller_name' => 'FirstController',
+            'name'=> 'desombre',
+            'firstname'=>'alain'
+            //'controller_name' => 'FirstController',
         ]);
     }
+    #[Route('/sayHello', name: 'say.hello')]
+    public function sayHello(): Response
+    {
+      $rand =rand(0,10);
+      echo($rand);
+      if ($rand % 2 == 0){
+        return $this->redirectToRoute('first');
+      }
+        return $this->forward('App\Controller\FirstController::index');
+    }
+
 }
